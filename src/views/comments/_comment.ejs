@@ -1,0 +1,12 @@
+<p class = "d-inline" style = "font-size : 70%"> 
+                       
+    <%= comment.content %>
+    <div style = "font-size : 50%"> - <%= comment.user.name %></div>
+    <% if(locals.user && locals.user.id === comment.user.id) {%>
+
+      <span class="d-inline float-right"> 
+         <a class="btn py-0 btn-sm btn-danger" href="/comments/destroy/<%= comment._id %>"> Delete </a>
+      </span>
+    <% } %>
+    
+ </p>

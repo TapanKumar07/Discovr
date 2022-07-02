@@ -1,0 +1,31 @@
+<li > 
+    <%= tweet.content %>
+</li>
+           <div class="d-flex justify-content-end"> <div class="mr-auto">  ~ <%= tweet.user.name %> </div> </div>
+          
+           <% if(locals.user && locals.user.id === tweet.user.id) {%>
+           
+                     <span class="d-inline float-right"> 
+                        <a class="btn py-0 btn-sm btn-danger" href="/tweets/destroy/<%= tweet._id %>"> Delete </a>
+                     </span>
+           <% } %>
+           <br>
+           <div>
+           <% if (locals.user) {%>
+               <form class="form-control form-control-sm form-inline" action="/comments/create" method="POST">
+                <input type="text" name="content" placeholder="Your Comment">
+                <input type="hidden" name="tweet" id="" value="<%= tweet._id %>">
+                <input type="submit" class="mr-auto btn-sm btn btn-primary" value="Add Comment">
+               </form>
+            <% } %>
+            <div>
+                <ul>
+                    <% for(comment of tweet.comments) {%>
+                       <%- include('../comments/_comment') %>
+                    <% } %>
+                </ul>
+            </div>
+           </div>
+
+
+           <hr>
