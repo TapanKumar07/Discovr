@@ -1,11 +1,6 @@
 const socket = function(socketServer) {
     let io = require('socket.io')(socketServer, {
-        cors: {
-            origin: "http://localhost:3000",
-            methods: ["GET", "POST"],
-            transports: ['websocket', 'polling'],
-            credentials: true
-        },
+       
         allowEIO3: true
     });
 
