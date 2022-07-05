@@ -2,7 +2,7 @@
 ## Project Setup
 - Clone the project in your local machine 
 - Go into the project directory and use npm i
-- Open https://localhost:3000 to access the website
+- Open https://localhost:3001 to access the website
 
 ### Features 
 - Twitter like website where users can comment,like,tweet
