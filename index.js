@@ -80,7 +80,7 @@ app.use('/', router);
 const chatEngine = require('http').Server(app);
 const {socket} = require('./src/config/sockets');
 const chatSockets = socket(chatEngine);
-chatEngine.listen(3001, async function() {
+chatEngine.listen( process.env.PORT || 3001, async function() {
     await connect();
     console.log("App listening at 3001")
 });
