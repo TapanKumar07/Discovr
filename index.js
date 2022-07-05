@@ -80,12 +80,8 @@ app.use('/', router);
 const chatEngine = require('http').Server(app);
 const {socket} = require('./src/config/sockets');
 const chatSockets = socket(chatEngine);
-chatEngine.listen(3001);
-console.log("Chat Engine listening at 3001!");
-
-
-
-app.listen(3000, async() => {
+chatEngine.listen(3001, async function() {
     await connect();
-    console.log("server started");
+    console.log("App listening at 3001")
 });
+
