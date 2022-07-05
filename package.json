@@ -182,7 +182,7 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "start": "node -e js,ejs,html index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tapan",
