@@ -6,13 +6,14 @@ const { newCommentMailer } = require('../mailers/comment_mailer');
 const create = async function(req, res) {
     
     try{
+
         const tweet = await Tweet.findById(req.body.tweet).populate('user');
         const commet = await comment.create({
             content : req.body.content,
             tweet :   req.body.tweet,
             user :    req.user
          });
-            newCommentMailer(tweet);
+          //  newCommentMailer(tweet);
             req.flash('success', 'Comment Created Successfully')
             tweet.comments.push(commet);
             tweet.save();
@@ -37,7 +38,7 @@ const destroy = async function(req, res) {
     return res.redirect('/');
   } catch(err){
     console.error("Error deleting comment", err)
-    return;
+    return res.redirect('back');
   }
     
    
