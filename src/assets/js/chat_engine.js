@@ -4,7 +4,7 @@ class ChatEngine {
     constructor(chatBox, userEmail) {
         this.chatBox = $(`#${chatBox}`);
         this.userEmail = userEmail;
-        this.socket = io.connect('https://dazzling-mammoth-cave-39143.herokuapp.com/');
+        this.socket = io.connect('https://discovrr.onrender.com/');
         if(this.userEmail) {
             this.connectionHandler();
         }
