@@ -49,41 +49,38 @@ app.set('views', './src/views');
 
 
 
-// app.use(session({
-//     name : "twitter",
-//     secret : 'thisisbuk',
-//     resave: false,
-//     cookie : {
-//         maxAge: 6000000
-//     },
-//     store : new mongoStore({
-//         mongoUrl : `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.8gby0.mongodb.net/?retryWrites=true&w=majority`,
-//         autoRemove : 'disable'
-//     }, function(err){
-//         if(err)
-//            console.error(err);
-//         console.log('connect-mongo setup done');
-//     })
-// }))
+app.use(session({
+    name : "twitter",
+    secret : 'thisisbuk',
+    resave: false,
+    cookie : {
+        maxAge: 6000000
+    },
+    store : new mongoStore({
+        mongoUrl : `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.8gby0.mongodb.net/?retryWrites=true&w=majority`,
+        autoRemove : 'disable'
+    }, function(err){
+        if(err)
+           console.error(err);
+        console.log('connect-mongo setup done');
+    })
+}))
 
 
-// app.use(flash());
-// app.use(setFlash);
+app.use(flash());
+app.use(setFlash);
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(passport.setAuthenticatedUser)
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser)
  
-app.get('/', async(req, res) => {
-    res.send("<h1> Yaha Kya aaya h be </h1>");
-})
-// app.use('/', router);
+app.use('/', router);
 
 
-// const chatEngine = require('http').Server(app);
-// const {socket} = require('./src/config/sockets');
-//const chatSockets = socket(chatEngine);
-app.listen( process.env.PORT || 3001, async function() {
+const chatEngine = require('http').Server(app);
+const {socket} = require('./src/config/sockets');
+const chatSockets = socket(chatEngine);
+chatEngine.listen( process.env.PORT || 3001, async function() {
     await connect();
     console.log("App listening at 3001")
 });
