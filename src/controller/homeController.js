@@ -19,8 +19,8 @@ module.exports.root = async function(req,res) {
                const users = await User.find({});
                return res.render('home',
                {
-                    name : "Welcome to Twitter", 
-                    title: "Twitter", 
+                    name : "Welcome to Discovrr", 
+                    title: "Discovrr", 
                     tweets : fetchedTweets,
                     users : users
                });

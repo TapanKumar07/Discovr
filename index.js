@@ -57,7 +57,7 @@ app.use(session({
         maxAge: 6000000
     },
     store : new mongoStore({
-        mongoUrl : `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.iun3s.mongodb.net/?retryWrites=true&w=majority`,
+        mongoUrl : `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.8gby0.mongodb.net/?retryWrites=true&w=majority`,
         autoRemove : 'disable'
     }, function(err){
         if(err)
