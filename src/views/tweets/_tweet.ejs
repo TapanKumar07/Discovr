@@ -1,31 +1,48 @@
-<li > 
-    <%= tweet.content %>
-</li>
-           <div class="d-flex justify-content-end"> <div class="mr-auto">  ~ <%= tweet.user.name %> </div> </div>
-          
-           <% if(locals.user && locals.user.id === tweet.user.id) {%>
-           
-                     <span class="d-inline float-right"> 
-                        <a class="btn py-0 btn-sm btn-danger" href="/tweets/destroy/<%= tweet._id %>"> Delete </a>
-                     </span>
-           <% } %>
-           <br>
-           <div>
-           <% if (locals.user) {%>
-               <form class="form-control form-control-sm form-inline" action="/comments/create" method="POST">
-                <input type="text" name="content" placeholder="Your Comment">
-                <input type="hidden" name="tweet" id="" value="<%= tweet._id %>">
-                <input type="submit" class="mr-auto btn-sm btn btn-primary" value="Add Comment">
-               </form>
-            <% } %>
-            <div>
-                <ul>
-                    <% for(comment of tweet.comments) {%>
-                       <%- include('../comments/_comment') %>
-                    <% } %>
-                </ul>
+<div class="col-md-4">
+    <!-- Second Column: Tweet Display -->
+    <div class="tweet-container">
+        <% if (tweet.tweet.media != null) { %>
+            <div class="media-container">
+                <% if (tweet.tweet.media.endsWith(".mp4")) { %>
+                    <video controls class="img-fluid" width="100%" height="auto">
+                        <source src="/tweets/image/<%= tweet.tweet.media %>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                <% } else { %>
+                    <img src="/tweets/image/<%= tweet.tweet.media %>" class="img-fluid" alt="">
+                <% } %>
             </div>
-           </div>
-
-
-           <hr>
+        <% } %>
+        <div class="tweet-content">
+            <p><%= tweet.tweet.content %></p>
+        </div>
+        <div class="tweet-details">
+            <div class="tweet-user">
+                <a href="/users/profile/<%= tweet.tweet.user.id %>"><%= tweet.tweet.user.name %></a>
+            </div>
+            <% if (locals.user && locals.user.id === tweet.tweet.user.id) { %>
+                <div class="tweet-actions">
+                    <a href="/tweets/destroy/<%= tweet.tweet._id %>" class="delete-tweet">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    
+                </div>
+            <% } %>
+        </div>
+        <div class="tweet-comments">
+            <% if (locals.user) { %>
+                <form class="comment-form" action="/comments/create" method="POST">
+                    <input type="text" name="content" placeholder="Your Comment">
+                    <input type="hidden" name="tweet" value="<%= tweet.tweet._id %>">
+                    <input type="submit" class="btn btn-primary btn-sm cut" value="Add Comment">
+                    
+                </form>
+            <% } %>
+            <ul>
+                <% for (comment of tweet.comments) { %>
+                    <%- include('../comments/_comment') %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</div>

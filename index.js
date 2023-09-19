@@ -1,6 +1,7 @@
 const express = require('express');
+require('dotenv').config();
 const router = require('./src/routes/indexRoutes');
-const connect = require('./src/config/database');
+const {connect} = require('./src/config/database');
 const bodyParser = require('body-parser');
 const session = require('express-session'); 
 const passport = require('./src/config/passport-local-strategy');
@@ -10,7 +11,9 @@ const expressLayouts = require('express-ejs-layouts');
 const cors = require('cors');
 const flash = require('connect-flash');
 const {setFlash} = require('./src/config/middleware');
-require('dotenv').config();
+
+
+
 const app = express();
 
 
@@ -47,8 +50,6 @@ app.set('layout',__dirname + '/src/views/layouts/layout.ejs');
 app.set('views', './src/views');
 
 
-
-
 app.use(session({
     name : "twitter",
     secret : 'thisisbuk',
@@ -57,7 +58,7 @@ app.use(session({
         maxAge: 6000000
     },
     store : new mongoStore({
-        mongoUrl : `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.8gby0.mongodb.net/?retryWrites=true&w=majority`,
+        mongoUrl : process.env.MONGO_URI,
         autoRemove : 'disable'
     }, function(err){
         if(err)
@@ -77,10 +78,14 @@ app.use(passport.setAuthenticatedUser)
 app.use('/', router);
 
 
+
 const chatEngine = require('http').Server(app);
 const {socket} = require('./src/config/sockets');
-const chatSockets = socket(chatEngine);
+socket(chatEngine);
+
 chatEngine.listen( process.env.PORT || 3001, async function() {
+    // const gfs = Grid(mongoose.connection);
+    //console.log(mongoose.connection);
     await connect();
     console.log("App listening at 3001")
 });

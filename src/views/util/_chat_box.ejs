@@ -1,16 +1,24 @@
 <% if(locals.user) {%>
-    <div class = "chat-box">
-        <h3> Chat Now</h3>
-        <ul id="message-list">
-            <li class="others-message">
-            </li>
-            <li class="own message"></li>
-        </ul>
-
-        <div id="chat-input">
-            <input type="text" id="message-input" placeholder="Your message">
-            <button id="send-message"> Send </button>
+    <div class="chat-container">
+        <div class="chat-content">
+            <h3>You are chatting with the world now!</h3>
+            <ul id="message-list" class="chat-window">
+            
+            </ul>
+            <div id="input-area">
+                <input type="text" id="message-input" placeholder="Your message">
+                <button class="send-button" id="send-message">Send</button>
+            </div>
+        </div>
+        <div class="online-users">
+            <h3>Online Users</h3>
+            <ul id="user-list">
+                <li>
+                    <span class="online-status-dot">&nbsp;</span>
+                   
+                  </li>
+            </ul>
         </div>
     </div>
-
 <% } %>
+

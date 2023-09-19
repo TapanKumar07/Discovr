@@ -1,12 +1,15 @@
-<p class = "d-inline" style = "font-size : 70%"> 
-                       
-    <%= comment.content %>
-    <div style = "font-size : 50%"> - <%= comment.user.name %></div>
-    <% if(locals.user && locals.user.id === comment.user.id) {%>
-
-      <span class="d-inline float-right"> 
-         <a class="btn py-0 btn-sm btn-danger" href="/comments/destroy/<%= comment._id %>"> Delete </a>
-      </span>
-    <% } %>
-    
- </p>
+<li class="list-group-item comment-list-item">
+   <div class="d-flex align-items-center justify-content-between">
+       <div>
+           <span><%= comment.content %></span>
+           <span class="comment-author ml-2">- <%= comment.user.name %></span>
+       </div>
+       <div class="ml-auto">
+           <% if (locals.user && locals.user.id === comment.user.id) { %>
+            <a href="/comments/destroy/<%= comment._id %>">
+               <i class="fas fa-trash-alt"></i>
+           </a>
+           <% } %>
+       </div>
+   </div>
+</li>

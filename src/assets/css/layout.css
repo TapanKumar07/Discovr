@@ -1,0 +1,334 @@
+.custom-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .custom-list-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  .custom-list-item:last-child {
+    border-bottom: none;
+  }
+  .custom-upper{
+    margin-top: 10%;
+  }
+
+/* Chat container styles */
+.chat-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 300px;
+  padding: 20px;
+}
+.message-name {
+  font-weight: bold; /* Make the name bold */
+  margin-bottom: 5px; /* Add spacing below the name */
+  color: #211e1e; /* Set the name color (adjust as needed) */
+}
+
+/* Style for the message text */
+.message-text {
+ /* Background color for the message text */
+  padding: 10px; /* Add padding to the message text */
+  border-radius: 10px; /* Rounded corners for the message text */
+  color: #333; /* Text color for the message text */
+}
+/* Chat content styles */
+.chat-content {
+  flex-grow: 1;
+  margin-left: 20px; /* Add margin to the left to create space */
+}
+
+.chat-window {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  width: 500px;
+  max-height: 400px;
+  min-height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Style for messages */
+.chat-message {
+  max-width: 70%; /* Adjust as needed */
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #f0f0f0; /* Add a border to chat messages */
+}
+
+/* Style for others' messages (aligned to the left) */
+.others-message {
+  background-color: #f0f0f0; /* Background color for others' messages */
+  float: left;
+  clear: both;
+}
+
+/* Style for own messages (aligned to the right) */
+.own-message {
+  background-color: #007bff; /* Background color for your messages */
+  float: right;
+  clear: both;
+  color: #fff;
+}
+
+
+
+/* Input area styles (as before) */
+
+.online-users {
+  background-color: #f0f0f0;
+  margin-left: 100px;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for online user list (adjust as needed) */
+#user-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style for online user list items (adjust as needed) */
+#user-list li {
+  margin: 20px 0;
+  font-weight: bold; /* Make user names bold */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Style for online user status dot */
+.online-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4caf50; /* Green dot for online users */
+}
+
+#user-list li span.online-status-dot + span {
+  padding-left: 5px; /* Adjust the padding as needed */
+}
+/* Style for the send button */
+.send-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 10px; /* Space between the button and the latest message */
+}
+
+/* Scrollbar styles */
+/* You can customize the scrollbar appearance if needed */
+/* For Webkit-based browsers (Chrome, Safari) */
+.chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* For Firefox */
+.chat-window {
+  scrollbar-width: thin;
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+.container {
+  width: 80%; /* Adjust the width as desired */
+  margin: 0 auto;
+  padding: 20px;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  padding: 20px;
+}
+
+/* Form Styles */
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 15px;
+}
+
+.custom-file-label {
+  cursor: pointer;
+}
+
+.recent-post {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text within the tweet content */
+}
+
+/* Center images and videos */
+.recent-post img,
+.recent-post video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px auto; /* Add some spacing around media */
+}
+
+/* Style the tweet content */
+.tweet-content {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* Style the tweet user's name */
+.tweet-user a {
+  text-decoration: none;
+  color: #385898; /* Facebook blue color */
+  font-weight: bold;
+}
+
+/* Style the tweet actions (e.g., delete button) */
+.tweet-actions {
+  margin-top: 10px;
+}
+
+/* Style images and videos */
+
+
+/* Add a border around images and videos */
+.recent-post img,
+.recent-post video {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Style the comment form */
+.comment-form {
+  display: flex;
+  flex-direction: row; /* Stack the elements horizontally */
+  align-items: center; /* Align elements vertically */
+  margin-top: 10px;
+}
+
+.comment-form .form-group {
+  margin-right: 10px; /* Add space between form elements */
+}
+
+.comment-form input[type="text"] {
+  flex: 1; /* Allow the text area to expand and fill available space */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.comment-form input[type="submit"] {
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Style comments */
+.comment-list {
+  list-style: none;
+  padding: 0;
+}
+.comment-list-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #f7f7f7;
+}
+
+.comment-content {
+  font-size: 16px;
+}
+
+.comment-author {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.delete-comment {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.delete-comment:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Style the user list */
+.card h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.list-group-item a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Additional styles for the overall layout */
+.container-fluid {
+  padding: 20px;
+}
+.cut {
+  margin-left: 20px;
+}
+/* Make the delete button red */
+.tweet-actions .btn-danger {
+  background-color: #ff5050;
+  color: #fff;
+  border: none;
+}
+
+/* Add a bit of spacing between tweets on smaller screens */
+@media (max-width: 768px) {
+  .recent-post {
+      padding: 10px;
+  }
+}
+
+.comment-list-item .ml-auto a i {
+  font-size: 18px; /* Adjust icon size as needed */
+  color: #dc3545; /* Delete button color */
+  margin-left: 10px; /* Add space between content and button */
+  cursor: pointer;
+}
+
+.comment-list-item .ml-auto a i:hover {
+  color: #bd2130; /* Hover color */
+}

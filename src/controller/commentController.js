@@ -6,7 +6,7 @@ const { newCommentMailer } = require('../mailers/comment_mailer');
 const create = async function(req, res) {
     
     try{
-
+        console.log("whtttt" , req.body);
         const tweet = await Tweet.findById(req.body.tweet).populate('user');
         const commet = await comment.create({
             content : req.body.content,
@@ -15,9 +15,6 @@ const create = async function(req, res) {
          });
           //  newCommentMailer(tweet);
             req.flash('success', 'Comment Created Successfully')
-            tweet.comments.push(commet);
-            tweet.save();
-           
             res.redirect('back');   
     } catch(err){
        console.error("Error Creating Tweet",err);
@@ -30,10 +27,10 @@ const create = async function(req, res) {
 const destroy = async function(req, res) {
   try{
     const commet = await comment.findById({_id : req.params.id});
+    console.log(req.params.id, commet);
     if(commet.user == req.user.id){
-        let tweetId = commet.tweet;
-        comment.remove();
-        await Tweet.findByIdAndUpdate(tweetId, { $pull : {comments : req.params.id}});
+        req.flash('success', 'Comment Deleted Successfully')
+        await comment.findByIdAndDelete(req.params.id);
     }
     return res.redirect('/');
   } catch(err){

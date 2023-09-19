@@ -7,23 +7,15 @@ const tweetSchema = new mongoose.Schema({
         maxlength : 300,
         minlength : 5
     },
+    media : {
+        type : String,
+        default : null
+    },
     user : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User',
         required : true
-    },
-    comments : [
-        {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Comment'
-        }
-    ],
-    likes : [
-        {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Like'
-        }
-    ]
+    }
 }, {timestamps : true});
 
 const Tweet = mongoose.model('Tweet', tweetSchema);

@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const passwordUtils = require("../config/passwordUtils");
 
 const profile = function(req,res) {
     User.findById(req.params.id, function(err, user){
@@ -47,7 +47,8 @@ const create =  function(req,res) {
         }
 
         if(!user) {
-            User.create(req.body , function(err, user) {
+            const hashAndSalt = passwordUtils.genPassword(req.body.password);
+            User.create({ name : req.body.name, email : req.body.email, hash : hashAndSalt.hash, salt : hashAndSalt.salt} , function(err, user) {
                 if(err) {
                     console.error(err);
                     return res.end();

@@ -1,6 +1,6 @@
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy; //how auth is carried out
-
+const passwordUtils = require("./passwordUtils");
 const User = require('../models/user');
 
 
@@ -12,8 +12,10 @@ passport.use(new localStrategy({
             console.log("Error Finding the User");
             return done(err);
         }
-
-        if(!user || user.password != password){
+        var passVerify = false;
+        if(user != null)
+            passVerify = passwordUtils.validatePassword(password, user.hash, user.salt);
+        if(!user || !passVerify){
             console.log("Invalid User")
             return done(null,false);
         }
@@ -45,6 +47,7 @@ passport.checkAuthentication = function(req,res,next) {
 
 passport.setAuthenticatedUser = function(req,res,next){
     if(req.isAuthenticated()){
+        res.locals.URI = process.env.SOCKET_URI;
         res.locals.user = req.user;
     }
     next();

@@ -1,46 +1,82 @@
 
 <h1> <%= name %></h1>
 
-<% if(locals.user) {%>
-<section>
-    <h5 style="text-align : left; margin-left :7.5%"> Create a Tweet!</h5>
-    <form class="form-group" action="/tweets/create" method="POST">
-        <textarea name="content" id="" cols="80" rows="5" placeholder="Your Tweet.."></textarea>
-        <input type="submit" class="btn btn-primary" value="Create Tweet">
-    </form>
 
-</section>
-<% } %>
+<div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <% if(locals.user) {%>
+                <div class="card">
+                    <div class="card-body">
+                     
+                        <h5 class="card-title">Post Something!</h5>
+                        <form action="/tweets/create" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <textarea name="content" class="form-control" placeholder="Your Tweet.." rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <!-- Custom file input with an icon -->
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile" name="file" accept=".jpg, .jpeg, .png, .mp4">
+                                        <label class="custom-file-label" for="customFile">
+                                            <i class="fas fa-cloud-upload-alt"></i> Upload File
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Create Post">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <div class="col-md-5">
+                <!-- Recent Posts -->
+                <div class="recent-posts-container">
+                    <h5 class="recent-posts-title">Recent Posts</h5>
+                    <div class="recent-posts-list">
+                        <% for(tweet of tweets) { %>
+                            <div class="recent-post">
+                                <%- include('./tweets/_tweet.ejs') %>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Users</h3>
+                        <ul class="list-group">
+                            <% for(current_user of users) { %>
+                                <li class="list-group-item">
+                                    <a href="/users/profile/<%= current_user.id %>"><%= current_user.name %></a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div >
-    <ul>
-        
-        <% for(tweet of tweets) {%>
-           <%- include('./tweets/_tweet') %>
-        <% } %>
-    </ul>
-</div>
 
-<section>
-    <h3>Users</h3>
-    <% for(current_user of users) {%>
-         <p>
-            <a href="/users/profile/<%= current_user.id %>"> <%= current_user.name  %></a>
-         </p>
-    <% } %>
-</section>
-
-<hr>
 <%- include('./util/_chat_box.ejs') %>
-
-
+                
+                
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.5.0/socket.io.js" integrity="sha512-ttqbKrGZiTtSLguBZ2xNvZrhUv02IO/TRq5U6TG5TK90wbaXWup5kIJ1A1tLzjOk5Mea/G4seVNrU+lwTLfAzA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/chat_engine.js"></script>
 
 <% if(locals.user) {%>
-    
        <script>
-          new ChatEngine('chat-input', '<%= locals.user.email%>')
+          new ChatEngine('chat-input', '<%= locals.user.name %>', '<%= locals.user.email %>','<%= locals.URI %>')
       </script>
 <% } %>
+
+
+
