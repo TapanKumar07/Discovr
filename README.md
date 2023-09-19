@@ -10,6 +10,8 @@
 - Sever Side rendering using Ejs
 - Users must authenticate first inorder for create, read, update and delete operations
 - Mail Alert system where mail is sent to registered email Id if someone commented on user tweet
+- Online Users Display
+- Upload Image/Video Functionality
 
 ### Techstack Used
 - NodeJS, ExpressJS, SockeIO, PassportJS, EJs, Jquery
