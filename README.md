@@ -16,6 +16,6 @@
 ### Techstack Used
 - NodeJS, ExpressJS, SockeIO, PassportJS, EJs, Jquery
 
-  Hosted on https://discovrr.onrender.com/
+- Hosted on https://discovrr.onrender.com/
 
-- Site hosted at https://dazzling-mammoth-cave-39143.herokuapp.com/
+
