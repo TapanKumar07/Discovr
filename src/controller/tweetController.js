@@ -58,7 +58,11 @@ const destroy =  async function(req,res) {
 
 const getMedia = async function(req, res) {
     try {
-       
+        console.log(req.params.id);
+        if(req.params.id == undefined) {
+            req.flash('success', 'Cant Fetch Media')
+            res.redirect('/'); 
+        }
         const readStream = gfs.openDownloadStreamByName(req.params.id);
         readStream.pipe(res);
     } catch(err) {
